@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+basepath = File.expand_path(File.dirname(__FILE__) + '/..')
+lib = File.join(basepath, 'lib')
+$LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
+
+require 'jebediah'
+
+if ARGV.length == 0 then
+	puts "Jebediah 1.0.0"
+	puts "usage:"
+	puts "\tjeb 123abcd"
+	puts "\t\tShow friendly name for hash 123abcd"
+	puts
+	puts "\tjeb chipperly divided snake"
+	puts "\t\t(multiple argument form)"
+	puts "\t\tShow hash for friendly name 'chipperly divided snake'" 
+	puts
+	puts "\tjeb 'disobligingly hypnotized grizzly'"
+	puts "\t\t(single argument form)"
+	puts "\t\tShow hash for friendly name 'disobligingly hypnotized grizzly'"
+	exit 1
+end
+
+jeb = Jebediah::Jebediah.new()
+puts jeb.renderResult(jeb.process(ARGV))
