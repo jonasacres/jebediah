@@ -11,14 +11,12 @@ but sometimes, it's hard to read a commit hash over the phone. 3, b, c, d and e 
   1234abc <-> "chipperly divided snake"
 
 ### How do I use it?
-`gem install jebediah`
-
 ```
+$ gem install jebediah
+
 $ jeb 1234abc
 chipperly divided snake
-```
 
-```
 $ jeb chipperly divided snake
 1234abc
 ```
