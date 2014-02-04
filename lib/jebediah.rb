@@ -1,5 +1,9 @@
 module Jebediah
 	class Jebediah
+		def self.version
+			return "1.0.0"
+		end
+
 		def initialize(dictPaths=nil)
 			if dictPaths == nil then
 				# Default configuration is a 3-word phrase (adverb, verb, animal)
