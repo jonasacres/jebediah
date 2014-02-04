@@ -22,5 +22,5 @@ if ARGV.length == 0 then
 	exit 1
 end
 
-jeb = Jebediah::Jebediah.new()
+jeb = Jebediah.new()
 puts jeb.renderResult(jeb.process(ARGV))

@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'jebediah'
 
-$jeb = Jebediah::Jebediah.new()
+$jeb =Jebediah.new()
 class JebediahTest < Test::Unit::TestCase
   
 
