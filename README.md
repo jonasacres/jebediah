@@ -23,6 +23,8 @@ $ jeb chipperly divided snake
 
 ### What about in code?
 
+Jebediah plays nicely as a ruby library.
+
 ```ruby
 require 'jebediah'
 
