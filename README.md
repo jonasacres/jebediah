@@ -21,6 +21,20 @@ $ jeb chipperly divided snake
 1234abc
 ```
 
+#### Cycling commit jebs
+The jeb for a commit can be construed as unflattering. If you want to cycle the commit of a git repo until it is acceptable, use the `jebcycle` tool:
+
+```sh
+$ jebcycle 
+unfamiliarly balanced cougar? y/n n
+vainly guaranteed mongoose? y/n n
+cheekily urged coyote? y/n n
+two-handedly remained finch? y/n n
+therapeutically tabulated hamster? y/n y
+```
+
+`jebcycle` applies empty amended commits to change the commit hash without lengthing the commit history.
+
 ### What about in code?
 
 Jebediah plays nicely as a ruby library.
