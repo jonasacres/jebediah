@@ -1,6 +1,6 @@
 class Jebediah
 	def self.version
-		return "1.0.2"
+		return "1.0.3"
 	end
 
 	def initialize(dictPaths=nil)

@@ -7,18 +7,26 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 require 'jebediah'
 
 def jeb
-	commit = `git log --format='%h' -n 1`
-	`jeb #{commit}`
+	commit = `git log --format='%h' -n 1`.strip
+	`jeb #{commit}`.strip
 end
 
 def cycleCommit
-	msg = `git log --format='%s' -n 1`
-	`git commit --allow-empty --amend -m #{msg}`
+	msg = `git log --format='%s' -n 1`.strip
+	`git commit --allow-empty --amend --no-edit`
 	jeb
 end
 
 while true do
-	puts "#{jeb}? y/n"
-	break if gets.chomp == 'y'
-	cycleCommit
+	print "#{jeb}? y/n "
+	begin
+		system("stty raw -echo")
+		str = STDIN.getc
+	ensure
+		system("stty -raw echo")
+	end
+	puts
+
+	break if str == 'y'	
+	cycleCommit if str == 'n'
 end

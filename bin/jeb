@@ -7,7 +7,7 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 require 'jebediah'
 
 if ARGV.length == 0 then
-	puts "Jebediah #{Jebediah::Jebediah.version}"
+	puts "Jebediah #{Jebediah.version}"
 	puts "usage:"
 	puts "\tjeb 123abcd"
 	puts "\t\tShow friendly name for hash 123abcd"
