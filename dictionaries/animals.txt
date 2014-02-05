@@ -20,7 +20,7 @@ chipmunk
 mole
 gemsbok
 dingo
-hog
+slimehog
 iguana
 musk
 bird
@@ -28,7 +28,7 @@ gnu
 ermine
 mongoose
 lamb
-bear
+cuddlebear
 badger
 addax
 hyena
@@ -40,7 +40,7 @@ ox
 coati
 impala
 cougar
-bear
+nightbear
 deer
 bear
 mynah
@@ -70,7 +70,7 @@ seal
 fawn
 otter
 horse
-goat
+therapy-goat
 chameleon
 capybara
 weasel
@@ -83,7 +83,7 @@ eland
 oryx
 yak
 vicuna
-hog
+speedhog
 koala
 ewe
 lion
@@ -105,7 +105,7 @@ hippopotamus
 whale
 waterbuck
 monkey
-fox
+gray-fox
 frog
 gazelle
 chimpanzee
@@ -124,7 +124,7 @@ doe
 anteater
 bison
 musk-ox
-dog
+ultradog
 steer
 jackal
 wolverine
@@ -177,8 +177,8 @@ rhinoceros
 zebu
 silver
 mare
-pig
-deer
+robopig
+rednose-reindeer
 monster
 raccoon
 ass
