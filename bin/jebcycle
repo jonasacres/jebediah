@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+basepath = File.expand_path(File.dirname(__FILE__) + '/..')
+lib = File.join(basepath, 'lib')
+$LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
+
+require 'jebediah'
+
+def jeb
+	commit = `git log --format='%h' -n 1`
+	`jeb #{commit}`
+end
+
+def cycleCommit
+	msg = `git log --format='%s' -n 1`
+	`git commit --allow-empty --amend -m #{msg}`
+	jeb
+end
+
+while true do
+	puts "#{jeb}? y/n"
+	break if gets.chomp == 'y'
+	cycleCommit
+end
