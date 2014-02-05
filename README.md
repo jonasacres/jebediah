@@ -20,3 +20,14 @@ chipperly divided snake
 $ jeb chipperly divided snake
 1234abc
 ```
+
+### What about in code?
+
+```
+require 'jebediah'
+
+jeb = Jebediah.new
+jeb.process("1234abc") # => {:type=>"phrase", :result=>["chipperly", "divided", "snake"]}
+jeb.process(["chipperly", "divided", "snake"]) # => {:type=>"hash", :result=>"1234abc"}
+jeb.process("chipperly divided snake") # => {:type=>"hash", :result=>"1234abc"}
+```
