@@ -7,7 +7,7 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 require 'jebediah'
 
 def jeb
-	commit = `git log --format='%h' -n 1`.strip
+	commit = `git log --format='%H' -n 1`.strip
 	`jeb #{commit}`.strip
 end
 

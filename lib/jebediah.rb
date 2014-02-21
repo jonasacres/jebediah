@@ -23,6 +23,20 @@ class Jebediah
 		return @dictionaries.length
 	end
 
+	# Maximum hexadecimal string length that can safely be addressed by the dictionary set
+	def maxStringLength
+		weight = @dictionaries.inject(1) { |x, d| x * d.length }
+		bits = (Math.log(weight)/Math.log(2)).floor
+		chars = bits/4
+	end
+
+	# Returns maximum number addressable in the dictionary space
+	def hashFromString(str)
+		str = str[2..-1] if str.start_with?("0x")
+		str = str.to_s[0..maxStringLength-1]
+		hash = Integer("0x" + str)
+	end
+
 	# Load in dictionaries from paths
 	def loadDictionaries(dictPaths)
 		@dictionaries = []
@@ -157,9 +171,8 @@ class Jebediah
 		#   S_n - s_n = S_(n-1),
 
 		begin
-			hash = "0x" + hash if hash.is_a?(String) and !hash.start_with?("0x")
 			weight = @dictionaries.inject(1) { |x, dict| dict.length * x } # L0 L1 L2 ... L_n
-			sum = Integer(hash) % weight
+			sum = hashFromString(hash)
 			lines = [ 0 ] * @dictionaries.length # We fill from the end backwards, so allocate the total size up front
 
 			(@dictionaries.length-1).downto(0) do |n|
