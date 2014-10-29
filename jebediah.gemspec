@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.executables << 'jeb'
   s.executables << 'jebcycle'
   s.executables << 'git-jeb'
-  s.version     = '1.0.4'
+  s.version     = '1.0.5'
   s.date        = '2014-02-04'
   s.summary     = "Converts hashes to names, and names to hashes"
   s.description = "A Gem to convert git hashes to memorable names, and vice versa"
