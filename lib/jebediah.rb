@@ -1,6 +1,6 @@
 class Jebediah
 	def self.version
-		return "1.0.3"
+		return "1.0.4"
 	end
 
 	def initialize(dictPaths=nil)
@@ -64,10 +64,18 @@ class Jebediah
 		str =~ /^[0-9a-fA-F]+$/
 	end
 
+	def isHyphenated?(str)
+		str =~ /^[\w-]+$/
+	end
+
 	# Processes arbitrary input formatted as a string
 	def processString(str)
 		if isHash?(str) then
 			return { :type => 'phrase', :result => phraseForHash(str) }
+		elsif(isHyphenated?(str)) then
+			terms = dehyphenatePhrase(str)
+			return { :type => 'hash', :result => hashForPhrase(terms) } unless terms.nil?
+			return { :type => 'unreadable' }
 		else
 			terms = str.split(' ')
 			return { :type => 'hash', :result => hashForPhrase(terms) } if phraseLength == terms.length
@@ -121,7 +129,13 @@ class Jebediah
 		weight = 1
 		hash = 0
 
-		phrase = phrase.gsub(/\s+/m, ' ').strip.split(' ') if phrase.is_a?(String)
+		if phrase.is_a?(String) then
+			if isHyphenated?(phrase) then
+				phrase = dehyphenatePhrase(phrase)
+			else
+				phrase = phrase.gsub(/\s+/m, ' ').strip.split(' ')
+			end
+		end
 
 		# If the phrase doesn't have the same number of words as our nomenclature requires, we can't convert
 		if phrase.length != @dictionaries.length then
@@ -142,6 +156,24 @@ class Jebediah
 
 		# Render the hash as a 7-digit hex string (suitable for git)
 		"%07x" % hash
+	end
+
+	def longestMatchInDictionary(words, dict)
+		words.count.times.map { |n| words[0..n].join("-") }.select { |phrase| dict.include?(phrase) }.last.split("-")
+	end
+
+	def dehyphenatePhrase(phrase)
+		phrase = phrase.split("-") if phrase.is_a?(String)
+		split = []
+		@dictionaries.each do |dict|
+			return nil if phrase.empty?
+			match = longestMatchInDictionary(phrase, dict)
+			split << match.join("-")
+			phrase = phrase[match.count .. -1]
+		end
+
+		return nil unless phrase.empty?
+		split
 	end
 
 	# Convert a hash into a phrase, e.g. "abc4321" -> "rightward succeeded seal"
