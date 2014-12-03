@@ -1,6 +1,6 @@
 class Jebediah
 	def self.version
-		return "1.0.6"
+		return "1.0.7"
 	end
 
 	def initialize(dictPaths=nil)
@@ -138,7 +138,7 @@ class Jebediah
 		end
 
 		# If the phrase doesn't have the same number of words as our nomenclature requires, we can't convert
-		if phrase.length != @dictionaries.length then
+		if phrase.nil? || phrase.length != @dictionaries.length then
 			return nil
 		end
 
@@ -171,7 +171,7 @@ class Jebediah
 			return nil if phrase.empty?
 			match = longestMatchInDictionary(phrase, dict)
 			return nil if match.nil?
-			
+
 			split << match.join("-")
 			phrase = phrase[match.count .. -1]
 		end
