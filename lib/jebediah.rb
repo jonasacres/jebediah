@@ -1,6 +1,6 @@
 class Jebediah
 	def self.version
-		return "1.0.5"
+		return "1.0.6"
 	end
 
 	def initialize(dictPaths=nil)
@@ -159,7 +159,9 @@ class Jebediah
 	end
 
 	def longestMatchInDictionary(words, dict)
-		words.count.times.map { |n| words[0..n].join("-") }.select { |phrase| dict.include?(phrase) }.last.split("-")
+		hyphenated = words.count.times.map { |n| words[0..n].join("-") }
+		in_dictionary = hyphenated.select { |phrase| dict.include?(phrase) }
+		in_dictionary.last.split("-") rescue nil
 	end
 
 	def dehyphenatePhrase(phrase)
@@ -168,6 +170,8 @@ class Jebediah
 		@dictionaries.each do |dict|
 			return nil if phrase.empty?
 			match = longestMatchInDictionary(phrase, dict)
+			return nil if match.nil?
+			
 			split << match.join("-")
 			phrase = phrase[match.count .. -1]
 		end
